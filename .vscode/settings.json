@@ -1,0 +1,9 @@
+{
+  "java.debug.settings.onBuildFailureProceed": true,
+  "java.project.referencedLibraries": [
+    "lib/**/*.jar",
+    "c:\\Users\\riaga\\OneDrive - Seneca\\java course\\Jar\\mysql-connector-java-8.0.28.jar",
+    "c:\\Users\\riaga\\OneDrive - Seneca\\java course\\Jar\\jcalendar-tz-1.3.3-4.jar",
+    "c:\\Users\\riaga\\OneDrive - Seneca\\java course\\Jar\\rs2xml.jar"
+  ]
+}
