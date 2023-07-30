@@ -94,7 +94,7 @@ public class project extends JFrame implements ActionListener {
         mb.add(examination);
 
         // inside new information
-        JMenuItem examinationDetails = new JMenuItem("Examination Details");
+        JMenuItem examinationDetails = new JMenuItem("Examination Results");
         examinationDetails.setBackground(Color.WHITE);
         examinationDetails.addActionListener(this);
         examination.add(examinationDetails);
@@ -112,7 +112,7 @@ public class project extends JFrame implements ActionListener {
         mb.add(updateDetails);
 
         // inside new information
-        JMenuItem updateStudentDetails = new JMenuItem("Update Students Details");
+        JMenuItem updateStudentDetails = new JMenuItem("Update Student Details");
         updateStudentDetails.setBackground(Color.WHITE);
         updateStudentDetails.addActionListener(this);
         updateDetails.add(updateStudentDetails);
@@ -158,10 +158,6 @@ public class project extends JFrame implements ActionListener {
         calculator.addActionListener(this);
         utility.add(calculator);
 
-        JMenuItem webBrowser = new JMenuItem("Web Browser");
-        webBrowser.setBackground(Color.WHITE);
-        webBrowser.addActionListener(this);
-        utility.add(webBrowser);
         // --------------------------------------------------------------------
 
         // --------------------------------------------------------------------
@@ -212,13 +208,6 @@ public class project extends JFrame implements ActionListener {
             } catch (Exception e) {
 
             }
-        } else if (msg.equals("Web Browser")) {
-            try {
-                Runtime.getRuntime().exec("window.exe");
-            } catch (Exception e) {
-
-            }
-
         } else if (msg.equals("New Faculty Information")) {
             new AddTeacher();
         } else if (msg.equals("New Student Information")) {
@@ -239,13 +228,13 @@ public class project extends JFrame implements ActionListener {
             new UpdateTeacher();
         } else if (msg.equals("Update Student Details")) {
             new UpdateStudent();
-        } else if (msg.equals("Enter Marks")) {
-            new EnterMarks();
         } else if (msg.equals("Examination Results")) {
             new ExaminationDetails();
+        } else if (msg.equals("Enter Marks")) {
+            new EnterMarks();
         } else if (msg.equals("Fee Structure")) {
             new FeeStructure();
-        } else if (msg.equals("About")) {
+        } else if (msg.equals("About Us")) {
             new About();
         } else if (msg.equals("Student Fee Form")) {
             new StudentFeeForm();
