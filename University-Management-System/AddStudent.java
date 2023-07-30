@@ -1,14 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.ResultSet;
 import java.util.*;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.*;
 
 public class AddStudent extends JFrame implements ActionListener {
-    JTextField tfstudentName, tfaddress, tfemail, tfpercentage, tffatherName, tfPhoneNo, tfXpercentage, tfaadharNo;
-    JLabel lblrollNo;
+
+    JTextField tfname, tffname, tfaddress, tfphone, tfemail, tfx, tfxii, tfaadhar;
+    JLabel labelrollno;
     JDateChooser dcdob;
     JComboBox cbcourse, cbbranch;
     JButton submit, cancel;
@@ -17,213 +16,177 @@ public class AddStudent extends JFrame implements ActionListener {
     long first4 = Math.abs((ran.nextLong() % 9000L) + 1000L);
 
     AddStudent() {
-        setSize(820, 600);
-        setLocation(250, 50);
 
-        // Heading
+        setSize(900, 700);
+        setLocation(350, 50);
+
         setLayout(null);
+
         JLabel heading = new JLabel("New Student Details");
-        heading.setBounds(305, 20, 200, 50);
-        heading.setFont(new Font("serif", Font.BOLD, 20));
+        heading.setBounds(310, 30, 500, 50);
+        heading.setFont(new Font("serif", Font.BOLD, 30));
         add(heading);
 
-        // ------------------------------------------------------------------
-        // username hardcode
-        JLabel studentName = new JLabel("Name");
-        studentName.setBounds(50, 150, 100, 30);
-        studentName.setFont(new Font("serif", Font.BOLD, 20));
-        add(studentName);
+        JLabel lblname = new JLabel("Name");
+        lblname.setBounds(50, 150, 100, 30);
+        lblname.setFont(new Font("serif", Font.BOLD, 20));
+        add(lblname);
 
-        // enter username field
-        tfstudentName = new JTextField();
-        tfstudentName.setBounds(200, 150, 150, 30);
-        add(tfstudentName);
+        tfname = new JTextField();
+        tfname.setBounds(200, 150, 150, 30);
+        add(tfname);
 
-        // -----------------------------------------------------------
-        // roll number hardcode
-        JLabel rollNumber = new JLabel("Roll No");
-        rollNumber.setBounds(50, 200, 200, 30);
-        rollNumber.setFont(new Font("serif", Font.BOLD, 20));
-        add(rollNumber);
+        JLabel lblfname = new JLabel("Father's Name");
+        lblfname.setBounds(400, 150, 200, 30);
+        lblfname.setFont(new Font("serif", Font.BOLD, 20));
+        add(lblfname);
 
-        lblrollNo = new JLabel("1533" + first4);
-        lblrollNo.setBounds(200, 200, 200, 30);
-        lblrollNo.setFont(new Font("serif", Font.BOLD, 20));
-        add(lblrollNo);
+        tffname = new JTextField();
+        tffname.setBounds(600, 150, 150, 30);
+        add(tffname);
 
-        // ------------------------------------------------------------------
-        // address hardcode
-        JLabel address = new JLabel("Address");
-        address.setBounds(50, 250, 200, 30);
-        address.setFont(new Font("serif", Font.BOLD, 20));
-        add(address);
+        JLabel lblrollno = new JLabel("Roll Number");
+        lblrollno.setBounds(50, 200, 200, 30);
+        lblrollno.setFont(new Font("serif", Font.BOLD, 20));
+        add(lblrollno);
 
-        // enter address field
-        tfaddress = new JTextField();
-        tfaddress.setBounds(200, 250, 150, 30);
-        add(tfaddress);
-        // ------------------------------------------------------------------
+        labelrollno = new JLabel("1533" + first4);
+        labelrollno.setBounds(200, 200, 200, 30);
+        labelrollno.setFont(new Font("serif", Font.BOLD, 20));
+        add(labelrollno);
 
-        // email hardcode
-        JLabel emailID = new JLabel("Email ID");
-        emailID.setBounds(50, 300, 200, 30);
-        emailID.setFont(new Font("serif", Font.BOLD, 20));
-        add(emailID);
-
-        // enter email field
-        tfemail = new JTextField();
-        tfemail.setBounds(200, 300, 150, 30);
-        add(tfemail);
-
-        // ------------------------------------------------------------------
-        // 12th percentage hardcode
-        JLabel classPercentage = new JLabel("Class XII(%)");
-        classPercentage.setBounds(50, 350, 200, 30);
-        classPercentage.setFont(new Font("serif", Font.BOLD, 20));
-        add(classPercentage);
-
-        // enter 12th percentage field
-        tfpercentage = new JTextField();
-        tfpercentage.setBounds(200, 350, 150, 30);
-        add(tfpercentage);
-
-        // ------------------------------------------------------------------
-        // course hardcode
-        JLabel course = new JLabel("Course");
-        course.setBounds(50, 400, 200, 30);
-        course.setFont(new Font("serif", Font.BOLD, 20));
-        add(course);
-
-        String courseArray[] = { "B.Tech", "BBA", "BCA", "CPA", "MBA", "MSC", "BCOM", "BA" };
-        cbcourse = new JComboBox(courseArray);
-        cbcourse.setBounds(200, 400, 150, 30);
-        cbcourse.setBackground(Color.WHITE);
-        cbcourse.setForeground(Color.BLACK);
-        add(cbcourse);
-        // ------------------------------------------------------------------
-        // father hardcode
-        JLabel fatherName = new JLabel("Father's Name");
-        fatherName.setBounds(400, 150, 200, 30);
-        fatherName.setFont(new Font("serif", Font.BOLD, 20));
-        add(fatherName);
-
-        // enter father field
-        tffatherName = new JTextField();
-        tffatherName.setBounds(600, 150, 150, 30);
-        add(tffatherName);
-
-        // ------------------------------------------------------------------
-        // date of birth hardcode
-        JLabel dateOfBirth = new JLabel("Date of Birth");
-        dateOfBirth.setBounds(400, 200, 200, 30);
-        dateOfBirth.setFont(new Font("serif", Font.BOLD, 20));
-        add(dateOfBirth);
+        JLabel lbldob = new JLabel("Date of Birth");
+        lbldob.setBounds(400, 200, 200, 30);
+        lbldob.setFont(new Font("serif", Font.BOLD, 20));
+        add(lbldob);
 
         dcdob = new JDateChooser();
         dcdob.setBounds(600, 200, 150, 30);
         add(dcdob);
 
-        // ------------------------------------------------------------------
-        // phone number hardcode
-        JLabel phoneNo = new JLabel("Phone");
-        phoneNo.setBounds(400, 250, 200, 30);
-        phoneNo.setFont(new Font("serif", Font.BOLD, 20));
-        add(phoneNo);
+        JLabel lbladdress = new JLabel("Address");
+        lbladdress.setBounds(50, 250, 200, 30);
+        lbladdress.setFont(new Font("serif", Font.BOLD, 20));
+        add(lbladdress);
 
-        // enter father field
-        tfPhoneNo = new JTextField();
-        tfPhoneNo.setBounds(600, 250, 150, 30);
-        add(tfPhoneNo);
+        tfaddress = new JTextField();
+        tfaddress.setBounds(200, 250, 150, 30);
+        add(tfaddress);
 
-        // ------------------------------------------------------------------
-        // 10th percentage hardcode
-        JLabel classXPercentage = new JLabel("Class X(%)");
-        classXPercentage.setBounds(400, 300, 200, 30);
-        classXPercentage.setFont(new Font("serif", Font.BOLD, 20));
-        add(classXPercentage);
+        JLabel lblphone = new JLabel("Phone");
+        lblphone.setBounds(400, 250, 200, 30);
+        lblphone.setFont(new Font("serif", Font.BOLD, 20));
+        add(lblphone);
 
-        // enter 12th percentage field
-        tfXpercentage = new JTextField();
-        tfXpercentage.setBounds(600, 300, 150, 30);
-        add(tfXpercentage);
+        tfphone = new JTextField();
+        tfphone.setBounds(600, 250, 150, 30);
+        add(tfphone);
 
-        // ------------------------------------------------------------------
-        // aadhar number hardcode
-        JLabel aadharNo = new JLabel("Aadhar No");
-        aadharNo.setBounds(400, 350, 200, 30);
-        aadharNo.setFont(new Font("serif", Font.BOLD, 20));
-        add(aadharNo);
+        JLabel lblemail = new JLabel("Email Id");
+        lblemail.setBounds(50, 300, 200, 30);
+        lblemail.setFont(new Font("serif", Font.BOLD, 20));
+        add(lblemail);
 
-        // enter aadhar number field
-        tfaadharNo = new JTextField();
-        tfaadharNo.setBounds(600, 350, 150, 30);
-        add(tfaadharNo);
+        tfemail = new JTextField();
+        tfemail.setBounds(200, 300, 150, 30);
+        add(tfemail);
 
-        // ------------------------------------------------------------------
-        // branch hardcode
-        JLabel branch = new JLabel("Branch");
-        branch.setBounds(400, 400, 200, 30);
-        branch.setFont(new Font("serif", Font.BOLD, 20));
-        add(branch);
+        JLabel lblx = new JLabel("Class X (%)");
+        lblx.setBounds(400, 300, 200, 30);
+        lblx.setFont(new Font("serif", Font.BOLD, 20));
+        add(lblx);
 
-        String branchArray[] = { "Computer Science", "Electronics", "Mechanical", "Civil", "IT" };
-        cbbranch = new JComboBox(branchArray);
+        tfx = new JTextField();
+        tfx.setBounds(600, 300, 150, 30);
+        add(tfx);
+
+        JLabel lblxii = new JLabel("Class XII (%)");
+        lblxii.setBounds(50, 350, 200, 30);
+        lblxii.setFont(new Font("serif", Font.BOLD, 20));
+        add(lblxii);
+
+        tfxii = new JTextField();
+        tfxii.setBounds(200, 350, 150, 30);
+        add(tfxii);
+
+        JLabel lblaadhar = new JLabel("Aadhar Number");
+        lblaadhar.setBounds(400, 350, 200, 30);
+        lblaadhar.setFont(new Font("serif", Font.BOLD, 20));
+        add(lblaadhar);
+
+        tfaadhar = new JTextField();
+        tfaadhar.setBounds(600, 350, 150, 30);
+        add(tfaadhar);
+
+        JLabel lblcourse = new JLabel("Course");
+        lblcourse.setBounds(50, 400, 200, 30);
+        lblcourse.setFont(new Font("serif", Font.BOLD, 20));
+        add(lblcourse);
+
+        String course[] = { "B.Tech", "BBA", "BCA", "Bsc", "Msc", "MBA", "MCA", "MCom", "MA", "BA" };
+        cbcourse = new JComboBox(course);
+        cbcourse.setBounds(200, 400, 150, 30);
+        cbcourse.setBackground(Color.WHITE);
+        add(cbcourse);
+
+        JLabel lblbranch = new JLabel("Branch");
+        lblbranch.setBounds(400, 400, 200, 30);
+        lblbranch.setFont(new Font("serif", Font.BOLD, 20));
+        add(lblbranch);
+
+        String branch[] = { "Computer Science", "Electronics", "Mechanical", "Civil", "IT" };
+        cbbranch = new JComboBox(branch);
         cbbranch.setBounds(600, 400, 150, 30);
         cbbranch.setBackground(Color.WHITE);
-        cbbranch.setForeground(Color.BLACK);
         add(cbbranch);
 
-        // login button
         submit = new JButton("Submit");
-        submit.setBounds(300, 480, 100, 30);
+        submit.setBounds(250, 550, 120, 30);
         submit.setBackground(Color.BLACK);
         submit.setForeground(Color.WHITE);
-        submit.setFont(new Font("serif", Font.BOLD, 15));
         submit.addActionListener(this);
+        submit.setFont(new Font("Tahoma", Font.BOLD, 15));
         add(submit);
 
-        // cancel button
         cancel = new JButton("Cancel");
-        cancel.setBounds(450, 480, 100, 30);
+        cancel.setBounds(450, 550, 120, 30);
         cancel.setBackground(Color.BLACK);
         cancel.setForeground(Color.WHITE);
-        cancel.setFont(new Font("serif", Font.BOLD, 15));
         cancel.addActionListener(this);
+        cancel.setFont(new Font("Tahoma", Font.BOLD, 15));
         add(cancel);
 
         setVisible(true);
-
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == submit) {
-            String name = tfstudentName.getText();
-            String father_name = tffatherName.getText();
-            String roll = lblrollNo.getText();
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == submit) {
+            String name = tfname.getText();
+            String fname = tffname.getText();
+            String rollno = labelrollno.getText();
             String dob = ((JTextField) dcdob.getDateEditor().getUiComponent()).getText();
-            String Address = tfaddress.getText();
-            String phoneNumber = tfPhoneNo.getText();
+            String address = tfaddress.getText();
+            String phone = tfphone.getText();
             String email = tfemail.getText();
-            String percentX = tfpercentage.getText();
-            String percentXII = tfXpercentage.getText();
-            String aadharNumber = tfaadharNo.getText();
-            String courses = (String) cbcourse.getSelectedItem();
-            String branches = (String) cbbranch.getSelectedItem();
+            String x = tfx.getText();
+            String xii = tfxii.getText();
+            String aadhar = tfaadhar.getText();
+            String course = (String) cbcourse.getSelectedItem();
+            String branch = (String) cbbranch.getSelectedItem();
 
             try {
-                String query = "insert into student values('" + name + "', '" + father_name + "', '" + roll + "','"
-                        + dob + "','" + Address + "','" + phoneNumber + "','" + email + "','" + percentX + "','"
-                        + percentXII + "','" + aadharNumber + "','" + courses + "','" + branches + "')";
+                String query = "insert into student values('" + name + "', '" + fname + "', '" + rollno + "', '" + dob
+                        + "', '" + address + "', '" + phone + "', '" + email + "', '" + x + "', '" + xii + "', '"
+                        + aadhar + "', '" + course + "', '" + branch + "')";
 
-                Conn c = new Conn();
-                c.s.executeUpdate(query);
+                Conn con = new Conn();
+                con.s.executeUpdate(query);
 
                 JOptionPane.showMessageDialog(null, "Student Details Inserted Successfully");
-            } catch (Exception ae) {
-                ae.printStackTrace();
+                setVisible(false);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
         } else {
             setVisible(false);
         }
@@ -232,5 +195,4 @@ public class AddStudent extends JFrame implements ActionListener {
     public static void main(String[] args) {
         new AddStudent();
     }
-
 }

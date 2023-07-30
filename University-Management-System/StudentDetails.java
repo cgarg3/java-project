@@ -2,8 +2,6 @@ import javax.naming.spi.DirStateFactory.Result;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import net.proteanit.sql.DbUtils;
 
@@ -94,28 +92,26 @@ public class StudentDetails extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == search) {
-            String query = "select * from student where rollNo = '" + rollbar.getSelectedItem()+"'";
+            String query = "select * from student where rollNo = '" + rollbar.getSelectedItem() + "'";
             try {
-                    Conn c = new Conn();
-                    ResultSet rs = c.s.executeQuery(query);                
-                    table.setModel(DbUtils.resultSetToTableModel(rs));
-                } catch (Exception ae) {
+                Conn c = new Conn();
+                ResultSet rs = c.s.executeQuery(query);
+                table.setModel(DbUtils.resultSetToTableModel(rs));
+            } catch (Exception ae) {
                 ae.printStackTrace();
             }
 
-        } else if  (e.getSource() == print){
-            
-        try {
-            table.print()
-        } catch (Exception ae) {
-            ae.printStackTrace();
-        }
-    }
-        else if (e.getSource() == add) {
+        } else if (e.getSource() == print) {
+
+            try {
+                table.print();
+            } catch (Exception ae) {
+                ae.printStackTrace();
+            }
+        } else if (e.getSource() == add) {
             setVisible(false);
-            new AddStudent();   
-        }
-        else if (e.getSource() == update) {
+            new AddStudent();
+        } else if (e.getSource() == update) {
             setVisible(false);
             new UpdateStudent();
         }
@@ -125,5 +121,5 @@ public class StudentDetails extends JFrame implements ActionListener {
             new project();
         }
 
-}
+    }
 }

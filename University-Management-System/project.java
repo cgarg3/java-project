@@ -133,7 +133,6 @@ public class project extends JFrame implements ActionListener {
         JMenuItem feeStructure = new JMenuItem("Fee Structure");
         feeStructure.setBackground(Color.WHITE);
         feeStructure.addActionListener(this);
-
         feeDetails.add(feeStructure);
 
         JMenuItem studentFeeForm = new JMenuItem("Student Fee Form");

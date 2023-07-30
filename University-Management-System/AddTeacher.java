@@ -1,10 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.util.*;
 import com.toedter.calendar.JDateChooser;
+import java.util.*;
+import java.awt.event.*;
 
 public class AddTeacher extends JFrame implements ActionListener {
     JTextField tfName, tfaddress, tfemail, tfpercentage, tffatherName, tfPhoneNo, tfXpercentage, tfaadharNo;
@@ -200,7 +198,7 @@ public class AddTeacher extends JFrame implements ActionListener {
         if (e.getSource() == submit) {
             String name = tfName.getText();
             String father_name = tffatherName.getText();
-            String roll = lblempNo.getText();
+            String empID = lblempNo.getText();
             String dob = ((JTextField) dcdob.getDateEditor().getUiComponent()).getText();
             String Address = tfaddress.getText();
             String phoneNumber = tfPhoneNo.getText();
@@ -212,7 +210,7 @@ public class AddTeacher extends JFrame implements ActionListener {
             String branches = (String) cbbranch.getSelectedItem();
 
             try {
-                String query = "insert into student values('" + name + "', '" + father_name + "', '" + roll + "','"
+                String query = "insert into teacher values('" + name + "', '" + father_name + "', '" + empID + "','"
                         + dob + "','" + Address + "','" + phoneNumber + "','" + email + "','" + percentX + "','"
                         + percentXII + "','" + aadharNumber + "','" + courses + "','" + branches + "')";
 
@@ -220,6 +218,7 @@ public class AddTeacher extends JFrame implements ActionListener {
                 c.s.executeUpdate(query);
 
                 JOptionPane.showMessageDialog(null, "Student Details Inserted Successfully");
+                setVisible(false);
             } catch (Exception ae) {
                 ae.printStackTrace();
             }

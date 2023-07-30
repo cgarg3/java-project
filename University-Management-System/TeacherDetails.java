@@ -32,7 +32,7 @@ public class TeacherDetails extends JFrame implements ActionListener {
             Conn c = new Conn();
             ResultSet rs = c.s.executeQuery("select * from teacher");
             while (rs.next()) {
-                empbar.add(rs.getString("empNo"));
+                empbar.add(rs.getString("empID"));
             }
 
         } catch (Exception e) {
@@ -94,28 +94,26 @@ public class TeacherDetails extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == search) {
-            String query = "select * from teacher where empId = '" + empbar.getSelectedItem()+"'";
+            String query = "select * from teacher where empID = '" + empbar.getSelectedItem() + "'";
             try {
-                    Conn c = new Conn();
-                    ResultSet rs = c.s.executeQuery(query);                
-                    table.setModel(DbUtils.resultSetToTableModel(rs));
-                } catch (Exception ae) {
+                Conn c = new Conn();
+                ResultSet rs = c.s.executeQuery(query);
+                table.setModel(DbUtils.resultSetToTableModel(rs));
+            } catch (Exception ae) {
                 ae.printStackTrace();
             }
 
-        } else if  (e.getSource() == print){
-            
-        try {
-            table.print()
-        } catch (Exception ae) {
-            ae.printStackTrace();
-        }
-    }
-        else if (e.getSource() == add) {
+        } else if (e.getSource() == print) {
+
+            try {
+                table.print();
+            } catch (Exception ae) {
+                ae.printStackTrace();
+            }
+        } else if (e.getSource() == add) {
             setVisible(false);
-            new AddTeacher();   
-        }
-        else if (e.getSource() == update) {
+            new AddTeacher();
+        } else if (e.getSource() == update) {
             setVisible(false);
             new UpdateTeacher();
         }
@@ -125,5 +123,5 @@ public class TeacherDetails extends JFrame implements ActionListener {
             new project();
         }
 
-}
+    }
 }
